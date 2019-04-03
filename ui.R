@@ -2,6 +2,11 @@ library(shiny)
 library(DT)
 library(plotly)
 
+d<- as.POSIXlt(Sys.Date())
+data_fim<-d
+d$year<-d$year-5
+data_inicio<-as.Date(d)
+
 
 shinyUI(
     
@@ -53,7 +58,7 @@ fluidRow(style = "background-color:lightgray;text-align:left;",
                     )
         )  ,
         column(3, 
-               dateRangeInput('ano',label = "Período da análise: ",format = "yyyy",language="pt",start = as.Date('2012-01-01'), end=Sys.Date(),startview = "year",separator = " - ")
+               dateRangeInput('ano',label = "Período da análise: ",format = "yyyy",language="pt",start = data_inicio, end=data_fim,startview = "year",separator = " - ")
     )
     ),
 hr(),
